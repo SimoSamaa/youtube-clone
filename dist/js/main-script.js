@@ -70,51 +70,51 @@ const htmlEelementInherit = `<!-- menu -->
 startContainer.innerHTML = htmlEelementInherit;
 navHeader.innerHTML = htmlEelementInherit;
 ;
-[...navHeader.children].forEach((el, index) => {
-    if (index == 0)
+[ ...navHeader.children ].forEach((el, index) => {
+    if(index == 0)
         el.setAttribute("tabindex", "0");
-    if (index == 1)
+    if(index == 1)
         el.setAttribute("tabindex", "0");
 });
-startContainer.children[0].addEventListener("click", () => {
+startContainer.children[ 0 ].addEventListener("click", () => {
     nav.classList.add("active-nav");
     nav.addEventListener("click", (e) => {
-        if (e.target != e.currentTarget)
+        if(e.target != e.currentTarget)
             return;
         nav.classList.remove("active-nav");
         document.body.style.overflowY = "scroll";
         videoPlayer.style.zIndex = "1";
     });
-    navHeader.children[0].addEventListener("click", () => {
+    navHeader.children[ 0 ].addEventListener("click", () => {
         nav.classList.remove("active-nav");
         document.body.style.overflowY = "scroll";
         videoPlayer.style.zIndex = "1";
     });
-    if (nav.classList.contains("active-nav")) {
+    if(nav.classList.contains("active-nav")) {
         document.body.style.overflowY = "hidden";
         videoPlayer.style.zIndex = "-1";
     }
 });
 let years = new Date();
-Copyright.innerHTML = `&copy ${years.getFullYear()} Google LLC`;
+Copyright.innerHTML = `&copy ${ years.getFullYear() } Google LLC`;
 let urlLink = "https://www.youtube.com/results?search_query=";
 btnSearch.addEventListener("click", buttonSearch);
 function buttonSearch() {
-    if (inputSearch.value != "") {
+    if(inputSearch.value != "") {
         window.location.href = urlLink + inputSearch.value;
         inputSearch.value = "";
     }
 }
 ;
 window.addEventListener('keyup', (e) => {
-    if (e.key.includes("Enter"))
+    if(e.key.includes("Enter"))
         return buttonSearch();
 });
 inputSearch.addEventListener("input", (e) => {
-    if (e.target.value == "") {
+    if(e.target.value == "") {
         btnRemoveValue_search.style.display = "none";
     }
-    else if (e.target.value != "") {
+    else if(e.target.value != "") {
         btnRemoveValue_search.style.display = "block";
     }
     btnRemoveValue_search.onclick = () => {
@@ -139,16 +139,16 @@ btnAddInput_search.addEventListener("click", (e) => {
         btnBackInput_search.classList.remove("search-toggle");
         btnAddInput_search.classList.remove("search-toggle");
         ;
-        [...startContainer.children].forEach(el => el.removeAttribute("tabindex"));
+        [ ...startContainer.children ].forEach(el => el.removeAttribute("tabindex"));
     }
     document.body.addEventListener("click", (e) => {
         let blur = e.target.matches(".blur");
-        if (blur == false)
+        if(blur == false)
             removeClasses();
     });
     btnBackInput_search.onclick = (() => removeClasses());
     ;
-    [...startContainer.children].forEach(el => el.setAttribute("tabindex", "-1"));
+    [ ...startContainer.children ].forEach(el => el.setAttribute("tabindex", "-1"));
 });
 const navBarLists = document.querySelectorAll(".option li");
 let links = [
@@ -173,9 +173,9 @@ let links = [
 ];
 navBarLists.forEach((list, index) => {
     list.addEventListener("click", () => {
-        for (let i = 0; i < links.length; i++) {
-            if (index == i) {
-                window.location.href = links[i];
+        for(let i = 0; i < links.length; i++) {
+            if(index == i) {
+                window.location.href = links[ i ];
             }
         }
     });
@@ -185,11 +185,11 @@ document.addEventListener("keyup", KeyboardControleVideoPlayer);
 function KeyboardControleVideoPlayer(e) {
     var _a;
     const tagName = (_a = document.activeElement) === null || _a === void 0 ? void 0 : _a.tagName.toLowerCase();
-    switch (e.key.toLowerCase()) {
+    switch(e.key.toLowerCase()) {
         case ' ':
         case 'k':
             {
-                if (tagName === "button")
+                if(tagName === "button")
                     return;
                 palyPaudseVideoToggle();
                 break;
@@ -249,7 +249,7 @@ function KeyboardControleVideoPlayer(e) {
 video.addEventListener("click", palyPaudseVideoToggle);
 btnPlayPause.addEventListener("click", palyPaudseVideoToggle);
 function palyPaudseVideoToggle() {
-    if (video.paused) {
+    if(video.paused) {
         video.play();
         popUp.innerHTML = `
         <svg viewBox="0 0 36 36">
@@ -296,7 +296,7 @@ function theaterModeToggle(theaterObj) {
 btnfullScreen.addEventListener("click", fullScreenModeToggle);
 function fullScreenModeToggle() {
     videoPlayer.classList.toggle("full-screen");
-    if (document.fullscreenElement == null) {
+    if(document.fullscreenElement == null) {
         videoPlayer.requestFullscreen();
     }
     else {
@@ -307,7 +307,7 @@ function fullScreenModeToggle() {
 btnMiniPlayer.addEventListener("click", miniPlayerModeToggle);
 function miniPlayerModeToggle() {
     videoPlayer.classList.toggle("mini-player");
-    if (videoPlayer.classList.contains("mini-player")) {
+    if(videoPlayer.classList.contains("mini-player")) {
         video.requestPictureInPicture();
     }
     else {
@@ -335,7 +335,7 @@ function disabledControleVideo() {
 disabledControleVideo();
 function volumeLevelToggle() {
     video.muted = !video.muted;
-    if ((video.volume && video.muted) == false) {
+    if((video.volume && video.muted) == false) {
         video.muted = volumeRange.value === "1";
         video.volume = 1;
     }
@@ -343,7 +343,7 @@ function volumeLevelToggle() {
         video.muted = volumeRange.value === "0";
         video.volume = 0;
     }
-    if (video.muted || video.volume == 0) {
+    if(video.muted || video.volume == 0) {
         lineProgressRange.style.width = "0";
     }
     else {
@@ -372,11 +372,11 @@ function videoVolumeInfo(e, arrayVolume) {
     arrayVolume = [];
     arrayVolume.push(volumeObj);
     arrayVolume.forEach(element => {
-        if (video.muted || videoVolume == 0) {
+        if(video.muted || videoVolume == 0) {
             volumeRange.value = "0";
             element.volumeLvl = "muted";
         }
-        else if (videoVolume >= .5) {
+        else if(videoVolume >= .5) {
             element.volumeLvl = "high";
         }
         else {
@@ -388,7 +388,7 @@ function videoVolumeInfo(e, arrayVolume) {
 }
 ;
 function shortcutKeyVolume() {
-    if (video.volume == 0) {
+    if(video.volume == 0) {
         popUp.innerHTML = `
         <svg viewBox="0 0 36 36" >
             <path fill="#fff"
@@ -436,11 +436,11 @@ function formatDuration(time) {
     let seconds = Math.floor(time % 60);
     let minuts = Math.floor(time / 60);
     let hours = Math.floor(time / 3600);
-    seconds = seconds < 10 ? `0${seconds}` : seconds;
-    if (video.currentTime == video.duration) {
+    seconds = seconds < 10 ? `0${ seconds }` : seconds;
+    if(video.currentTime == video.duration) {
         videoPlayer.classList.add("rel");
         btnPlayPause.onclick = () => {
-            if (videoPlayer.classList.contains("rel")) {
+            if(videoPlayer.classList.contains("rel")) {
                 videoPlayer.classList.remove("rel");
                 video.addEventListener("pause", () => {
                     videoPlayer.classList.remove("paused");
@@ -453,11 +453,11 @@ function formatDuration(time) {
     else {
         videoPlayer.classList.remove("rel");
     }
-    if (hours === 0) {
-        return `${minuts}:${seconds} `;
+    if(hours === 0) {
+        return `${ minuts }:${ seconds } `;
     }
     else {
-        return `${hours}:${minuts}:${seconds} `;
+        return `${ hours }:${ minuts }:${ seconds } `;
     }
 }
 ;
@@ -482,28 +482,28 @@ let skipIcon = `
 const skipPopUpRight = () => {
     var _a;
     skiRight.innerHTML = skipIcon;
-    let arrowDirLeft = (_a = skiRight.firstElementChild) === null || _a === void 0 ? void 0 : _a.children[0];
+    let arrowDirLeft = (_a = skiRight.firstElementChild) === null || _a === void 0 ? void 0 : _a.children[ 0 ];
     arrowDirLeft === null || arrowDirLeft === void 0 ? void 0 : arrowDirLeft.classList.add("arrowDirLeft");
     videoPlayer.appendChild(skiRight);
     skipR = setTimeout(() => skiRight.remove(), 1000);
-    if (video.currentTime == video.duration)
+    if(video.currentTime == video.duration)
         skiRight.remove();
 };
 const skipPopUpLeft = () => {
     var _a;
     skipLeft.innerHTML = skipIcon;
-    let arrowDirRight = (_a = skipLeft.firstElementChild) === null || _a === void 0 ? void 0 : _a.children[0];
+    let arrowDirRight = (_a = skipLeft.firstElementChild) === null || _a === void 0 ? void 0 : _a.children[ 0 ];
     arrowDirRight === null || arrowDirRight === void 0 ? void 0 : arrowDirRight.classList.add("arrowDirRight");
     videoPlayer.appendChild(skipLeft);
     skipL = setTimeout(() => skipLeft.remove(), 1000);
-    if (video.currentTime == 0)
+    if(video.currentTime == 0)
         skipLeft.remove();
-    if (videoPlayer.classList.contains("rel"))
+    if(videoPlayer.classList.contains("rel"))
         video.play();
 };
 const brnCaption = document.querySelector(".btn-caption");
 brnCaption.addEventListener("click", captionSubTitleModeToggle);
-let captionMode = video.textTracks[0];
+let captionMode = video.textTracks[ 0 ];
 captionMode.mode = "hidden";
 function captionSubTitleModeToggle() {
     const isCaption = captionMode.mode === "hidden";
@@ -515,11 +515,11 @@ const brnSpeed = document.querySelector(".btn-speed");
 brnSpeed.addEventListener("click", speedVideoToggle);
 function speedVideoToggle() {
     let newPlaybackRate = video.playbackRate + .25;
-    if (newPlaybackRate > 2) {
+    if(newPlaybackRate > 2) {
         newPlaybackRate = .25;
     }
     video.playbackRate = newPlaybackRate;
-    brnSpeed.textContent = `${newPlaybackRate}x`;
+    brnSpeed.textContent = `${ newPlaybackRate }x`;
 }
 ;
 ;
@@ -536,7 +536,7 @@ likeBtn.addEventListener("click", (e) => {
     localStorage.setItem("data-like", JSON.stringify(dataLike));
 });
 const removeLiked = () => {
-    if (!likeBtn.classList.contains("liked")) {
+    if(!likeBtn.classList.contains("liked")) {
         dislikeBtn.onclick = () => {
             likeBtn.classList.add("liked");
             likeBtn.lastChild.textContent = "0";
@@ -551,7 +551,7 @@ dislikeBtn.addEventListener("click", (e) => {
     localStorage.setItem("data-dislike", e.target.className);
 });
 const removeDisliked = () => {
-    if (!dislikeBtn.classList.contains("disliked")) {
+    if(!dislikeBtn.classList.contains("disliked")) {
         likeBtn.onclick = () => {
             dislikeBtn.classList.add("disliked");
             localStorage.removeItem("data-dislike");
@@ -559,11 +559,11 @@ const removeDisliked = () => {
     }
 };
 const descriptionToggle = document.querySelector(".description-container");
-const date = descriptionToggle.firstElementChild.children[0];
+const date = descriptionToggle.firstElementChild.children[ 0 ];
 descriptionToggle.addEventListener("click", (e) => {
     let showMore = e.target.matches(".show-more");
     let showMoreChange;
-    if (showMore == true) {
+    if(showMore == true) {
         let description = e.currentTarget.classList.toggle("description");
         description = description ? showMoreChange = "Mar 15,2023" : showMoreChange = "8 days ago";
     }
@@ -589,10 +589,10 @@ function handleTimeLineUpdate(e) {
     const rect = timeLineContainer.getBoundingClientRect();
     const percent = Math.min(Math.max(0, e.x - rect.x), rect.width) / rect.width;
     const previewImgNumber = Math.max(1, Math.floor((percent * video.duration / 10)));
-    previewImg.src = `./assets/previewImgs/preview${previewImgNumber}.jpg`;
+    previewImg.src = `./assets/previewImgs/preview${ previewImgNumber }.jpg`;
     timeLineContainer.style.setProperty("--preview-position", percent.toFixed(2));
     let previewImgPercent = percent;
-    if (previewImgPercent >= 0.11) {
+    if(previewImgPercent >= 0.11) {
         previewContainer.style.setProperty("--previewimg-pos", "calc(var(--preview-position) * 100%)");
         previewContainer.style.transform = "translate(-50%, -100%)";
     }
@@ -600,13 +600,13 @@ function handleTimeLineUpdate(e) {
         previewContainer.style.transform = "translate(0, -100%)";
         previewContainer.style.setProperty("--previewimg-pos", "0");
     }
-    if (previewImgPercent >= 0.88) {
+    if(previewImgPercent >= 0.88) {
         previewContainer.style.setProperty("--previewimg-pos", "90%");
     }
     let previewTimeProgress = (e.offsetX / rect.width) * video.duration;
     let timeLine = previewTimeProgress <= 0 ? +0 : previewTimeProgress;
     let timeLineProgressNumber;
-    if (video.currentTime == video.duration) {
+    if(video.currentTime == video.duration) {
         timeLineProgressNumber = formatDuration(video.duration);
     }
     else {
@@ -627,31 +627,31 @@ function toggleScrubbing(e) {
 }
 ;
 function getDataFromLocalStorage(arrayVolume, theaterObj, dataLike) {
-    if (localStorage.getItem("theater-mode")) {
-        theaterObj = JSON.parse(localStorage["theater-mode"]);
+    if(localStorage.getItem("theater-mode")) {
+        theaterObj = JSON.parse(localStorage[ "theater-mode" ]);
         videoPlayer.className = theaterObj.theaterplayer;
         mainContainer.className = theaterObj.theatermain;
         videoPlayer.classList.add("paused");
     }
-    if (localStorage.getItem("data-like")) {
-        dataLike = JSON.parse(localStorage["data-like"]);
+    if(localStorage.getItem("data-like")) {
+        dataLike = JSON.parse(localStorage[ "data-like" ]);
         likeBtn.className = dataLike.likeicon;
         likeBtn.lastChild.textContent = dataLike.likenum;
         removeLiked();
     }
-    if (localStorage.getItem("data-dislike")) {
-        dislikeBtn.className = localStorage["data-dislike"];
+    if(localStorage.getItem("data-dislike")) {
+        dislikeBtn.className = localStorage[ "data-dislike" ];
         removeDisliked();
     }
-    if (localStorage.getItem("data-volume")) {
-        arrayVolume = JSON.parse(localStorage["data-volume"]);
-        videoPlayer.dataset.volumeLevel = arrayVolume[0].volumeLvl;
-        lineProgressRange.style.width = arrayVolume[0].volumeLin;
-        volumeRange.value = arrayVolume[0].volumeVal;
+    if(localStorage.getItem("data-volume")) {
+        arrayVolume = JSON.parse(localStorage[ "data-volume" ]);
+        videoPlayer.dataset.volumeLevel = arrayVolume[ 0 ].volumeLvl;
+        lineProgressRange.style.width = arrayVolume[ 0 ].volumeLin;
+        volumeRange.value = arrayVolume[ 0 ].volumeVal;
         video.volume = +volumeRange.value;
     }
-    if (localStorage.getItem("data-time")) {
-        timeLineProgress = JSON.parse(localStorage['data-time']);
+    if(localStorage.getItem("data-time")) {
+        timeLineProgress = JSON.parse(localStorage[ 'data-time' ]);
         timeLineContainer.style.setProperty("--progress-position", timeLineProgress.lineporcent);
         video.currentTime = +timeLineProgress.videoct;
     }
@@ -659,40 +659,40 @@ function getDataFromLocalStorage(arrayVolume, theaterObj, dataLike) {
 ;
 getDataFromLocalStorage(null, null, null);
 const videoPlayList = document.querySelector(".play-list-video");
-fetch("./src/video-list.json")
+fetch("./dist/video-list.json")
     .then((videoListData) => {
-    let data = videoListData.json();
-    return data;
-}).then((myData) => {
-    for (let i = 0; i < myData.length; i++) {
-        let videoListContainer = document.createElement("div");
-        videoListContainer.className = "video-container-list";
-        videoListContainer.innerHTML = `
+        let data = videoListData.json();
+        return data;
+    }).then((myData) => {
+        for(let i = 0; i < myData.length; i++) {
+            let videoListContainer = document.createElement("div");
+            videoListContainer.className = "video-container-list";
+            videoListContainer.innerHTML = `
                 <div class="main-video-list">
-                    <img src ='${myData[i].videoimg}'>
-                    <span class='video-list-time'>${myData[i].videotime}</span>
+                    <img src ='${ myData[ i ].videoimg }'>
+                    <span class='video-list-time'>${ myData[ i ].videotime }</span>
                 </div>
 
                 <div class="info-video-list">
-                    <strong class="main-video-list_title" style="display: block; margin-bottom: 4px;">${myData[i].title}</strong>
-                    <p>${myData[i].channelname}</p>
+                    <strong class="main-video-list_title" style="display: block; margin-bottom: 4px;">${ myData[ i ].title }</strong>
+                    <p>${ myData[ i ].channelname }</p>
                     <div class="video-views-years">
-                        <span>${myData[i].views}</span>
-                        <span>${myData[i].years}</span>
+                        <span>${ myData[ i ].views }</span>
+                        <span>${ myData[ i ].years }</span>
                     </div>
                 <div>
             `;
-        videoListContainer.onclick = () => location.href = myData[i].videolink;
-        videoPlayList.append(videoListContainer);
-    }
-}).catch(() => console.error("json path not unavailable"));
+            videoListContainer.onclick = () => location.href = myData[ i ].videolink;
+            videoPlayList.append(videoListContainer);
+        }
+    }).catch(() => console.error("json path not unavailable"));
 let mobileSize = 550;
-const theaterModeMediaQuery = window.matchMedia(`(max-width:${mobileSize}px)`);
+const theaterModeMediaQuery = window.matchMedia(`(max-width:${ mobileSize }px)`);
 const fullScreenModeMediaQuery = window.matchMedia('(max-device-width: 896px) and (orientation: landscape)');
-const orientationPortrait = window.matchMedia(`(max-device-width: ${mobileSize}px) and (orientation: portrait)`);
+const orientationPortrait = window.matchMedia(`(max-device-width: ${ mobileSize }px) and (orientation: portrait)`);
 function handleTheatermode(e) {
     const theaterModeOn = e.matches;
-    if (theaterModeOn) {
+    if(theaterModeOn) {
         videoPlayer.classList.add("theater");
         mainContainer.classList.add("theater");
     }
@@ -704,7 +704,7 @@ function handleTheatermode(e) {
 ;
 function videoFullscreenLandscape(e) {
     const fullScreen_landscape = e.matches;
-    if (fullScreen_landscape) {
+    if(fullScreen_landscape) {
         videoPlayer.classList.add("video-fullscreen-landscape");
         document.body.style.overflow = "hidden";
     }
@@ -719,18 +719,18 @@ fullScreenModeMediaQuery.addListener(videoFullscreenLandscape);
 const videoControlContainer = document.querySelector(".video-controls-container");
 function mobileTouchVideo(e) {
     const videoSection = document.querySelector(".video-section");
-    if (e.matches) {
+    if(e.matches) {
         videoPlayer.onpointerenter = () => {
             stopTouchMobile = setTimeout(() => {
                 videoControlContainer.style.visibility = "hidden";
             }, 3000);
-            if (videoControlContainer.style.visibility == "hidden") {
+            if(videoControlContainer.style.visibility == "hidden") {
                 videoControlContainer.style.visibility = "visible";
                 clearInterval(stopTouchMobile);
             }
         };
         window.onscroll = function () {
-            if (this.scrollY) {
+            if(this.scrollY) {
                 videoSection.classList.add('video-mobile-device');
             }
             else {
