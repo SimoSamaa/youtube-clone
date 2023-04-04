@@ -1,0 +1,97 @@
+@use './mixins' as *;
+
+html :is(*, *::before, ::after) {
+    box-sizing: border-box;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    @include colorsApp();
+    @include themeColorsApp(dark);
+    @include themeColorsApp(light);
+}
+
+::-webkit-scrollbar {
+    background-color: transparent;
+    width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--clr-gray-hover);
+    border-radius: 1em;
+    border: 2px solid var(--clr-main);
+}
+
+body {
+    background-color: var(--clr-main);
+    color: var(--clr-text);
+    min-height: 100vh;
+    min-height: 100svh;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    padding-block: 61.8px 2em;
+}
+
+button {
+    all: unset;
+    cursor: pointer;
+    outline: transparent;
+    border: 2px solid transparent;
+    font-weight: 600;
+    @include gridOptions(grid, center);
+}
+
+header button {
+    min-width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    @include hoverFocusEffect(hover);
+    @include hoverFocusEffect(focus);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+svg {
+    fill: currentColor;
+    width: 24px;
+    height: 24px;
+    pointer-events: none;
+}
+
+.yt-icon {
+    width: 90px;
+    height: 20px;
+}
+
+#youtube-paths {
+    fill: var(--clr-text);
+}
+
+.tran-300 {
+    transition: 300ms ease;
+}
+
+@media (max-device-width: 896px) and (orientation: landscape) {
+
+    .btn-controle:nth-child(7),
+    .volume-container {
+        display: none !important;
+    }
+}
+
+@media (max-width:360px) {
+    body {
+        width: 360px;
+    }
+}
+
+@-moz-document url-prefix() {
+    .btn-mini-player {
+        display: none;
+    }
+}

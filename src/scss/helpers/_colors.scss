@@ -1,0 +1,28 @@
+$colors: (
+    red:#FF0000,
+    blue:#3EA6FF,
+    black:#000000,
+    white: #FFFFFF,
+);
+
+$colors-dark_theme: (
+    main:#0F0F0F,
+    text:#F1F1F1,
+    gray:#ffffff1a,
+    gray-hover:#3F3F3F,
+    search:#121212,
+    link: #AAAAAA,
+    border:#303030,
+    btn-search: #222222,
+);
+
+$colors-light_theme: (
+    main:#FFFFFF,
+    text:#0F0F0F,
+    gray:#0000000d,
+    gray-hover:#E5E5E5,
+    search: #FFFFFF,
+    link: #606060,
+    border:#d3d3d3,
+    btn-search: #f8f8f8,
+);
