@@ -595,9 +595,6 @@ header .user .main-user {
   width: 100%;
   background: var(--clr-black);
 }
-.video-player.video-fullscreen-landscape .btn-full-screen {
-  display: none;
-}
 .video-player.video-fullscreen-landscape .video-controls-container {
   width: 100%;
 }

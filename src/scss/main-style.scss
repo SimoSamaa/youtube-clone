@@ -405,10 +405,6 @@ header {
         background: var(--clr-black);
     }
 
-    &.video-fullscreen-landscape .btn-full-screen {
-        display: none;
-    }
-
     &.video-fullscreen-landscape .video-controls-container {
         width: 100%;
     }
